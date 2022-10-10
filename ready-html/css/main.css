@@ -1,0 +1,94 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+:root {
+	--gap: .5em; /* gap: растояние между ячейками между Изображения-(ФОТО) */
+	--index: calc(1vw + 1vh); /* index: calc(1vw + 1vh) - учитывает и ширину и высоту (calc(1vw + 1vh) 1% от резиновой 1vw - ширина, 1vh - высота */
+	--color-dark: #000; /* цвет текста */
+}
+body {
+	overflow-wrap: hidden; /* базовая стилизация*/
+	height: 100vh; /* Высота вьюпорта (отображает на всю страницу) */
+	display: flex; /* Центрирует Прелоадер и заголовок по середине */
+	justify-content: center; /* Центрирует Прелоадер и заголовок по середине */
+	align-items: center; /* Центрирует Прелоадер и заголовок по середине */
+}
+   /* .header {} ( настройка текста) */
+.header {
+	text-transform: uppercase;
+	/*font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+	letter-spacing: 0.45em; /* Растояние между символами */
+	font-size: calc(var(--index) * 2); /** (calc(var - переменная (--index) * 1.5-размер шрифта  ) Для того что бы текс был резиновый **/
+	position: absolute; /* В низу будет Прелоадер*/
+	font-weight: 200; /* (здесь применяется параметр font-weight)  Начертание шрифта более тонким */
+	 /* Прелоадеры - это анимированные изображения, представляющие процесс загрузки страницы сайта. Прелоадеры отображаются в виде фонового изображения, 
+	 которое скрывает от пользователя процесс отрисовки больших изображений и других элементов сайта. */
+	text-align: center; /* Прелоадер */
+	opacity: .9; /* Используется для замені цвета что бі не использовать переменніе */
+	margin-top: 7px; /* Изменяет положение на экране <h1 D.P. NAILS </h1> (верх или вниз */
+}
+.header span {
+	display: block;
+	font-family: Helvetica, sans-serif; /* Шрифты */
+	font-size: calc(var(--index) * .55);
+/* Изменяет растояние от натписей (<h1 class="header">D.P. NAILS <span>Loading...</span></h1>)*/
+	margin-top: 6px; /* Изменяет растояние от верхней натписи */ 
+	/*letter-spacing: 1em;*/
+}
+.header footer {
+	display: block;
+	font-family: Helvetica, sans-serif;
+	font-size: calc(var(--index) * 1.5);
+	position: let center;
+	margin-top: 130px;
+	font-weight: 200;
+	letter-spacing: 0.15em;
+}
+.gallery {
+	width: 30vw;
+	column-width: 2em; /* размер Изображения-(ФОТО) */
+	gap: var(--gap); /* применили переменную (var(--gap) */
+	transform: scale(8.2); /* Изображенния стали крупнее */
+	will-change: ttransform; /* Улудшает качество изображения при скроле Обязательно прописівается для transform:*/
+	transition: transform 1s Cubic-Bezier(.075, 1, .250, 1) opacity 1s; /* Настройки CSS анимации Cubic-Bezier CSS Generator: (Перейти на сайт) -
+	- При скролинге страницы меняет плавность и динамику (opacity 1s; - добавляет плавность к появлению контента)*/
+}
+.gallery__item {
+	margin-bottom: var(--gap); /* применили переменную (var(--gap) растояние между изображения-(ФОТО однородные */
+	transform: scale(1.001); /* scale ставим чут-чуть больше (по умолчанию (1) */
+	will-change: ttransform; /* Улудшает качество изображения при скроле Обязательно прописівается для transform:*/
+	transition: .3s; /* заанимирывать при наведении на Изображения-(ФОТО) плавно двигается */
+}
+/* .gallery__item:hover {	transform: scale(1.03%); Увиличение при наведении на фото) */
+.gallery__item:hover {
+	transform: scale(1.03);
+}
+.gallery__item img {
+	width: 100%; /* размер Изображения-(ФОТО) отображаюшихся на сайте */
+	display: block; /* Выравнивает растояние между объектами Обязательно указывать так как изображения не явлеются блочным элементам */
+}
+/* Нужно для того что быб сначала загружалась название а потом контент */
+.loaded .gallery {
+	opacity: 1; /* Изменив значение можно контент сделать прозрачным */
+}
+/* Нужно для того что быб <span>ЖДЕМ ВАС К НАМ В ГОСТИ</span></h1> исчезал -
+   <h1 class="header">D.P. NAILS <span>ЖДЕМ ВАС К НАМ В ГОСТИ</span></h1>*/
+.loaded .header span {
+	opacity: 0;
+}
+
+/* DARCK MOOD OS */
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: var(--color-dark); /* переменная меняет цвет фона в body */
+	}
+	.header {
+		filter: invert(100%); /* Инверсия цвета текста(если фон белый текст черный и на оборот) */
+	}
+	.footer {
+		filter: invert(100%); /* Инверсия цвета текста(если фон белый текст черный и на оборот) */
+	}
+}
